@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blockly LOGO Demo</title>
+  <script src="JS-Interpreter/acorn_interpreter.js"></script>
+  <script src="blockly/blockly_compressed.js"></script>
+  <script src="blockly/blocks_compressed.js"></script>
+  <script src="blockly/msg/js/en.js"></script>
+  <script src="blockly/javascript_compressed.js"></script>
+
+  <script src="turtle_geom.js"></script>
+  <script src="microworld.js"></script>
+  <script src="microworld_procedural_bindings.js"></script>  
+  <script src="ui.js"></script>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+
+    #blocklyDiv {
+      float: left;
+      width: 50%;
+      height: 700px;
+    }
+
+    #microworldDiv {
+      float: right;
+      width: 45%;
+      height: 700px;
+      border: thin solid black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Visible Time Demo</h1>
+
+  <p>
+    <button onclick="stepCode()" id="stepButton" disabled="disabled">STEP</button>
+    <button onclick="runCode()" id="runButton" disabled="">RUN</button>
+  </p>
+
+  <div id="blocklyDiv" ></div>
+  <div id="microworldDiv" ></div>
+
+
+  <xml id="toolbox" style="display: none">
+
+    <category name="Controle">
+      <block type="controls_start"></block>
+
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <block type="math_number">
+            <field name="NUM">10</field>
+          </block>
+        </value>
+      </block>
+
+      <block type="controls_if"></block>
+
+      <block type="controls_flow_statements"></block>
+
+
+    </category>
+    <category name="Números">
+      <block type="math_number"></block>
+      <block type="math_arithmetic"></block>
+      <block type="math_single"></block>
+      <block type="math_trig"></block>
+
+      <block type="math_change">
+        <value name="DELTA">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+
+      <block type="math_modulo"></block>
+
+      <block type="math_random_int">
+        <value name="FROM">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="TO">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+
+    </category>
+
+    <category name="Tartaruga">
+      <block type="move_backward"></block>
+      <block type="move_forward"></block>
+      <block type="turn_right"></block>
+      <block type="turn_left"></block>
+    </category>
+
+
+  </xml>
+
+  <xml id="startScript" style="display: none">
+    <block type="controls_start" x="99" y="77"><next><block type="controls_repeat_ext"><value name="TIMES"><block type="math_number"><field name="NUM">10</field></block></value><statement name="DO"><block type="move_forward"><value name="steps"><block type="math_number"><field name="NUM">100</field></block></value><next><block type="turn_right"><field name="degrees">90</field></block></next></block></statement></block></next></block>
+  </xml>
+
+  <script>
+    initUI();
+  </script>
+
+
+
+</body>
+</html>
