@@ -13,24 +13,15 @@ function initUI() {
      {media: 'blockly/media/',
       toolbox: document.getElementById('toolbox')});
 
-  currentworld = new microworld("microworldDiv", {
-      //width of chart
-      width: 600,
-      //height of chart
-      height: 700,
-      //on error callback if canvas is unsupported
-      on_error: null,
-      //graphic for turtle (for debugging)
-      turtle: "t0.png"
-  });
-
-  currentworld.showturtle();
-
   Blockly.Xml.domToWorkspace(workspace,
       document.getElementById('startScript'));
 
   workspace.addChangeListener(parseCode);
 
+  //init the turtle geometry microworldDiv
+  var canvas_element = document.getElementById("microworld");
+
+  currentworld = new Microworld(canvas_element, canvas_element.width, canvas_element.height);
 }
 
 
