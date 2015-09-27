@@ -9,33 +9,14 @@
   <script src="blockly/msg/js/en.js"></script>
   <script src="blockly/javascript_compressed.js"></script>
 
-  <script src="turtle_geom.js"></script>
+  <script src="TurtleBlocks.js"></script>
+  <script src="LogoBlocks.js"></script>
+  <script src="microworld_procedural_bindings.js"></script>
   <script src="microworld.js"></script>
-  <script src="microworld_procedural_bindings.js"></script>  
   <script src="ui.js"></script>
-  <style>
-    body {
-      background-color: #fff;
-      font-family: sans-serif;
-    }
-    h1 {
-      font-weight: normal;
-      font-size: 140%;
-    }
 
-    #blocklyDiv {
-      float: left;
-      width: 50%;
-      height: 700px;
-    }
+  <link rel="stylesheet" href="index.css">
 
-    #microworldDiv {
-      float: right;
-      width: 45%;
-      height: 700px;
-      border: thin solid black;
-    }
-  </style>
 </head>
 <body>
   <h1>Visible Time Demo</h1>
@@ -46,7 +27,11 @@
   </p>
 
   <div id="blocklyDiv" ></div>
-  <div id="microworldDiv" ></div>
+  <div id="microworldDiv">
+      <canvas id="microworld" width="550" height="550">
+        <span data-l10n-id="no-canvas">Your browser does not support the canvas element - sorry!</span>
+      </canvas>
+  </div>
 
 
   <xml id="toolbox" style="display: none">
@@ -99,25 +84,71 @@
 
     </category>
 
-    <category name="Tartaruga">
-      <block type="move_backward"></block>
-      <block type="move_forward"></block>
-      <block type="turn_right"></block>
-      <block type="turn_left"></block>
+    <category name="Turtle">
+      <block type="turtle_forward">
+        <value name="steps">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+
+      <block type="turtle_back">
+        <value name="steps">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+      <block type="turtle_right"></block>
+      <block type="turtle_left"></block>
+      <block type="turtle_home"></block>
+
+      <block type="turtle_arc">
+        <value name="radius">
+          <block type="math_number">
+            <field name="NUM">100</field>
+          </block>
+        </value>
+      </block>
+
+
+      <block type="turtle_setpos"></block>
+      <block type="turtle_setposx"></block>
+      <block type="turtle_xcor"></block>
+      <block type="turtle_setposy"></block>
+      <block type="turtle_ycor"></block>
+      <block type="turtle_setheading"></block>
+      <block type="turtle_heading"></block>
+      <block type="turtle_show"></block>
+      <block type="turtle_hide"></block>
+      <block type="turtle_towards"></block>
+    </category>
+
+    <category name="Pen">
+
+      <block type="pen_setpencolor"></block>
+      <block type="pen_fill"></block>
+    </category>
+
+    <category name="Screen">
+      <block type="screen_clean"></block>
+      <block type="screen_clearscreen"></block>
+      <block type="screen_wrap"></block>
+      <block type="screen_window"></block>
+      <block type="screen_fence"></block>
     </category>
 
 
   </xml>
 
   <xml id="startScript" style="display: none">
-    <block type="controls_start" x="99" y="77"><next><block type="controls_repeat_ext"><value name="TIMES"><block type="math_number"><field name="NUM">10</field></block></value><statement name="DO"><block type="move_forward"><value name="steps"><block type="math_number"><field name="NUM">100</field></block></value><next><block type="turn_right"><field name="degrees">90</field></block></next></block></statement></block></next></block>
+    <block type="controls_start" x="99" y="77"><next><block type="controls_repeat_ext"><value name="TIMES"><block type="math_number"><field name="NUM">4</field></block></value><statement name="DO"><block type="turtle_forward"><value name="steps"><block type="math_number"><field name="NUM">100</field></block></value><next><block type="turtle_right"><field name="degrees">90</field></block></next></block></statement></block></next></block>
   </xml>
 
   <script>
     initUI();
   </script>
-
-
 
 </body>
 </html>
