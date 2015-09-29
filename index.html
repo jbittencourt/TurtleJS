@@ -36,7 +36,7 @@
 
   <xml id="toolbox" style="display: none">
 
-    <category name="Controle">
+    <category name="Control">
       <block type="controls_start"></block>
 
       <block type="controls_repeat_ext">
@@ -48,8 +48,11 @@
       </block>
 
       <block type="controls_if"></block>
+      <block type="controls_if">
+        <mutation else="1"></mutation>
+      </block>
 
-      <block type="controls_flow_statements"></block>
+
 
 
     </category>
@@ -128,7 +131,21 @@
     <category name="Pen">
 
       <block type="pen_setpencolor"></block>
+      <block type="pen_setpensize">
+        <value name="size">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+      <block type="pen_ispendown?"></block>
+      <block type="pen_setpenup"></block>
+      <block type="pen_setpendown"></block>
       <block type="pen_fill"></block>
+      <block type="pen_pencolor"></block>
+      <block type="pen_pensize"></block>
+
+
     </category>
 
     <category name="Screen">
@@ -139,11 +156,15 @@
       <block type="screen_fence"></block>
     </category>
 
+    <category name="Variables" custom="VARIABLE"></category>
+    <category name="Functions" custom="PROCEDURE"></category>
+
 
   </xml>
 
   <xml id="startScript" style="display: none">
-    <block type="controls_start" x="99" y="77"><next><block type="controls_repeat_ext"><value name="TIMES"><block type="math_number"><field name="NUM">4</field></block></value><statement name="DO"><block type="turtle_forward"><value name="steps"><block type="math_number"><field name="NUM">100</field></block></value><next><block type="turtle_right"><field name="degrees">90</field></block></next></block></statement></block></next></block>
+    <block type="controls_start" x="99" y="77"><next><block type="screen_clearscreen"><next><block type="controls_repeat_ext"><value name="TIMES"><block type="math_number"><field name="NUM">72</field></block></value><statement name="DO"><block type="turtle_forward"><value name="steps"><block type="math_number"><field name="NUM">220</field></block></value><next><block type="turtle_back"><value name="steps"><block type="math_number"><field name="NUM">220</field></block></value><next><block type="turtle_right"><field name="degrees">5</field><next><block type="pen_setpencolor"><value name="color"><block type="turtle_heading"></block></value></block></next></block></next></block></next></block></statement></block></next></block></next></block>
+    <!-- <block type="controls_start" x="99" y="77"><next><block type="controls_repeat_ext"><value name="TIMES"><block type="math_number"><field name="NUM">4</field></block></value><statement name="DO"><block type="turtle_forward"><value name="steps"><block type="math_number"><field name="NUM">100</field></block></value><next><block type="turtle_right"><field name="degrees">90</field></block></next></block></statement></block></next></block> -->
   </xml>
 
   <script>

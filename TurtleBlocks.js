@@ -1,13 +1,14 @@
+
+var hue_category_pen = 230;
+
 /******************************************************************************
  * START
  * https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#ccn3xf
  ******************************************************************************/
-
-
 Blockly.Blocks['controls_start'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("start");
+        .appendField("\u2691 Start");
     this.setNextStatement(true);
     this.setColour(120);
     this.setTooltip('');
@@ -447,7 +448,7 @@ Blockly.Blocks['turtle_heading'] = {
 };
 
 Blockly.JavaScript['turtle_heading'] = function(block) {
- var code = 'headingCT()';
+ var code = 'getheadingCT()';
  return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -481,7 +482,7 @@ Blockly.JavaScript['turtle_towards'] = function(block) {
 
 
 /******************************************************************************
- * FILL, SETPENCOLOR, SETPENSIZE
+ * FILL, SETPENCOLOR, SETPENSIZE, ISPENDOWN?, PENUP, PENDOWN
  * PenColor: https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#ey35tk
  * PenSize: https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#vboywc
  ******************************************************************************/
@@ -491,7 +492,7 @@ Blockly.JavaScript['turtle_towards'] = function(block) {
         .appendField("fill");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(230);
+    this.setColour(hue_category_pen);
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
   }
@@ -508,7 +509,7 @@ Blockly.JavaScript['turtle_towards'] = function(block) {
      this.appendValueInput("color")
          .setCheck("Number")
         .appendField("set pen color to");
-     this.setColour(230);
+     this.setColour(hue_category_pen);
      this.setPreviousStatement(true);
      this.setNextStatement(true);
      this.setTooltip('');
@@ -530,7 +531,7 @@ Blockly.Blocks['pen_setpensize'] = {
         .appendField("set pen size to");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setColour(230);
+    this.setColour(hue_category_pen);
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
   }
@@ -538,6 +539,111 @@ Blockly.Blocks['pen_setpensize'] = {
 
 Blockly.JavaScript['pen_setpensize'] = function(block) {
   var value_size = Blockly.JavaScript.valueToCode(block, 'size', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'setsizeCT('+value_size+')';
+  var code = 'setwidthCT('+value_size+');';
   return code;
 };
+
+//sets penup
+Blockly.Blocks['pen_setpenup'] = {
+ init: function() {
+   this.appendDummyInput()
+       .appendField("pen up");
+   this.setPreviousStatement(true);
+   this.setNextStatement(true);
+   this.setColour(hue_category_pen);
+   this.setTooltip('');
+   this.setHelpUrl('http://www.example.com/');
+ }
+};
+
+Blockly.JavaScript['pen_setpenup'] = function(block) {
+ var code = 'penupCT();';
+ return code;
+};
+
+//sets penup
+Blockly.Blocks['pen_setpendown'] = {
+ init: function() {
+   this.appendDummyInput()
+       .appendField("pen down");
+   this.setPreviousStatement(true);
+   this.setNextStatement(true);
+   this.setColour(hue_category_pen);
+   this.setTooltip('');
+   this.setHelpUrl('http://www.example.com/');
+ }
+};
+
+Blockly.JavaScript['pen_setpendown'] = function(block) {
+ var code = 'pendownCT();';
+ return code;
+};
+
+Blockly.Blocks['pen_ispendown?'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("is pen down?");
+    this.setOutput(true, "Boolean");
+    this.setColour(hue_category_pen);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+};
+
+Blockly.JavaScript['pen_ispendown?'] = function(block) {
+ var code = 'ispendownCT()';
+ return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.Blocks['pen_pencolor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("pen color");
+    this.setOutput(true, "Boolean");
+    this.setColour(hue_category_pen);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+};
+
+Blockly.JavaScript['pen_pencolor'] = function(block) {
+ var code = 'getcolorCT()';
+ return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.Blocks['pen_pensize'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("pen size");
+    this.setOutput(true, "Boolean");
+    this.setColour(hue_category_pen);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+};
+
+Blockly.JavaScript['pen_pensize'] = function(block) {
+ var code = 'getwidthCT()';
+ return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+
+
+/**
+ * TODO:reduce
+ * TODO:find
+ * TODO:filter
+ * TODO:map
+ * TODO:foreach
+ * TODO:invoke
+ * TODO:apply
+ * TODO:cond
+ * TODO:case
+ * TODO:until
+ * TODO:do.until
+ * TODO:for
+ * TODO:bye
+ * TODO:repcount
+ * TODO:forever
+ * TODO: Workspace Queries
+ **/

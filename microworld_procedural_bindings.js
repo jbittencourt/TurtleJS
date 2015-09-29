@@ -158,7 +158,7 @@ function isturtlevisibleCT() {
   return currentworld.isturtlevisible();
 }
 function getheadingCT() {
-  return currentworld.getheading();
+  return Math.round(currentworld.getheading());
 }
 function getxyCT() {
   return currentworld.getxy();
